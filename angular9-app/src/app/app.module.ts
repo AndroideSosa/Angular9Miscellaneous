@@ -1,6 +1,7 @@
 //Importaciones generales
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Importación archivo de rutas
 import { AppRoutingModule } from './app-routing.module';
 //Importación páginas de la aplicación
@@ -8,7 +9,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 //Importación de componentes generales
 import { GeneralComponentsModule } from './general-components.module';
-//Importación módulo Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -18,6 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     GeneralComponentsModule,
     NgbModule

@@ -7,11 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //Importaciones de los Componentes Generales de la Aplicación
 import { HeaderComponent } from './components/header/header.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    NavBarComponent
+    NavBarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
   ],
   exports: [
     HeaderComponent,
-    NavBarComponent
+    NavBarComponent,
+    FooterComponent
   ]
 })
 export class GeneralComponentsModule { }

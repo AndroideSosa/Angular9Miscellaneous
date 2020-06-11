@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
   <!-- Image and text in navbar-->
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="/home">
       <img src="assets/imgs/angular-icon.svg" width="50" height="35" class="d-inline-block align-top" alt="">
       Angular9 App
   </a>
@@ -27,7 +27,8 @@
                 <div ngbDropdown class="d-inline-block">
                   <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Formularios</a>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button ngbDropdownItem 
+                    <button ngbDropdownItem
+                            (click)="isMenuCollapsed = true" 
                             [routerLink]="'/form-template'"> 
                             Template 
                     </button>

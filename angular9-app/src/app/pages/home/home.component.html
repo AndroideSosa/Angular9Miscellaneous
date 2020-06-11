@@ -1,1 +1,89 @@
+<!-- Estructura Slider con Bootstrap 4-->
+<div class="jumbotron">
+        <h1 class="display-4 text-center">Carrusel de Imágenes con Bootstrap 4</h1>
+</div>
 
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+         <div class="carousel-item active">
+            <img class="d-block w-100" [src]=imagesSlider[0].image alt="First slide">
+         </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" [src]=imagesSlider[1].image alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" [src]=imagesSlider[2].image alt="Third slide">
+          </div>
+          <div class="carousel-item">
+                <img class="d-block w-100" [src]=imagesSlider[3].image alt="Fourth slide">
+          </div>
+          <div class="carousel-item">
+                <img class="d-block w-100" [src]=imagesSlider[4].image alt="Fifth slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Siguiente</span>
+        </a>
+</div>
+<!-- Estructura Slider con Bootstrap 4-->
+<br>
+
+<!-- Estructura Slider con ngBootstrap-->
+<div class="jumbotron">
+        <h1 class="display-4 text-center">Carrusel de Imágenes con ngBootstrap</h1>
+</div>
+<ngb-carousel *ngIf="imagesSlider">
+        <ng-template ngbSlide *ngFor="let image of imagesSlider">
+          <div class="picsum-img-wrapper">
+            <img [src]=image.image alt="Random first slide">
+          </div>
+          <div class="carousel-caption">
+            <h3>{{image.name}}</h3>
+            <p>{{image.description}}</p>
+          </div>
+        </ng-template>    
+      </ngb-carousel>
+<!-- Estructura Slider con ngBootstrap-->
+<br>
+<div class="container">
+<!-- Estructura Cartas con Bootstrap-->
+    <div class="row">
+        <h1 class="container text-center">
+            Estructura de cartas con Bootstrap
+        </h1>
+        <div class="col-sm-6">
+            <div class="card">
+                <img class="card-img-top" src="/assets/imgs/slider-1.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+            </div>  
+        </div>
+        <div class="col-sm-6">
+                <div class="card">
+                    <img class="card-img-top" src="/assets/imgs/slider-1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                </div>  
+        </div>  
+    </div>
+<!-- Estructura Cartas con Bootstrap-->
+    <br>
+</div>

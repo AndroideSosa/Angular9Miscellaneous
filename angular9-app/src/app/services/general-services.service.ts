@@ -18,7 +18,7 @@ export class GeneralServicesService {
   //Definicion de endpoints
   private endPointCountries: string = "https://restcountries.eu/rest/v2/lang/es";
 
-  //Se contruyen objetos de consulta
+  //Se contruyen objetos de consulta para imagenes de home
   private imagenesSlider: any[] = [
     {
       id: 1,
@@ -49,8 +49,35 @@ export class GeneralServicesService {
       name: "Slider 5",
       image : '/assets/imgs/slider-5.jpg',
       description: "Esta es la imagen que corresponde al slider 5"
+    }
+  ]
+
+  //Se contruyen objetos de consulta
+  private estadosCivil: any[] = [
+    {
+      id: 1,
+      name: "Soltero",
+      value: "Soltero",
+      description: "Estado civil Soltero"
     },
-    
+    {
+      id: 2,
+      name: "Casado",
+      value: "Casado",
+      description: "Estado civil Casado"
+    },
+    {
+      id: 3,
+      name: "Divorciado",
+      value: "Divorciado",
+      description: "Estado civil Divorciado"
+    },
+    {
+      id: 4,
+      name: "Viudo",
+      value: "Viudo",
+      description: "Estado civil Viudo"
+    }
   ]
 
   constructor(private _http: HttpClient) { 
@@ -60,6 +87,12 @@ export class GeneralServicesService {
   public getSlidesImages(): Array<any> {
     return this.imagenesSlider;
   }
+
+  //Servicio que regresa el arreglo de imagenes para el slide
+  public getMaritalStatus(): Array<any> {
+    return this.estadosCivil;
+  }
+
 
    //Servicio para obtener el arreglo de paises utilizando operador map (filtrando resultados)
    public getCountriesReactive(){

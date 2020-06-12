@@ -1,4 +1,5 @@
 <div class="container top-buffer bottom-buffer">
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#D0021B" type="ball-clip-rotate"></ngx-spinner>
   <!-- Título de la sección--> 
     <div class="col-md-12">
         <h4>Formulario por Template</h4>
@@ -6,14 +7,14 @@
     </div>
 <br>
   <!-- Estructura del formulario -->
-    <form>
+    <form (ngSubmit)="saveData(template)" #template="ngForm">
         <div class="row">
             <div class="col-md-12">
                 <h4>Registro de personal</h4>
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="form-group row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="nombre">Nombre(s)</label>
@@ -21,34 +22,47 @@
                             class="form-control" 
                             id="nombre" 
                             name="nombre"
-                            ngModel
-                            placeholder="Escriba su nombre(s)">
+                            [ngModel]="persona.nombre"
+                            placeholder="Escriba su nombre(s)"
+                            required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="apellidoP">Apellido Paterno</label>
+                    <label for="paterno">Apellido Paterno</label>
                     <input  type="text" 
                             class="form-control" 
-                            id="apellidoP" 
-                            placeholder="Escriba su apellido paterno">
+                            id="paterno"
+                            name="paterno"
+                            [ngModel]="persona.paterno" 
+                            placeholder="Escriba su apellido paterno"
+                            required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="apellidoP">Apellido Materno</label>
+                    <label for="materno">Apellido Materno</label>
                     <input  type="text" 
                             class="form-control" 
-                            id="apellidoM" 
-                            placeholder="Escriba su apellido materno">
+                            id="materno" 
+                            name="materno"
+                            [ngModel]="persona.materno" 
+                            placeholder="Escriba su apellido materno"
+                            required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="pais">País de Nacimiento</label>
-                    <select class="form-control">
+                    <select class="form-control"
+                            name="pais"
+                            [ngModel]="persona.pais">
+                        <option value=null
+                                disabled>
+                                Seleccione una opción
+                        </option>
                         <option *ngFor="let pais of paises"
-                                [value]="pais.alpha3Code">
+                                [ngValue]="pais.alpha3Code">
                                 {{pais.name}}
                         </option>  
                     </select>
@@ -126,14 +140,67 @@
                                 placeholder="Escriba su número telefónico">
                     </div>
             </div>
-            <hr class="red">
-            <div class="col-md-4 col-md-offset-9">
+            <div class="col-md-6 text-center">
+                <label class="col-12 col-form-label">¿Tiene familiares laborando en esta empresa?</label>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block btn-lg" 
-                            type="submit">
-                            Registrar Personal
-                    </button>
+                    <div class="form-check form-check-inline">
+                        <input  class="form-check-input"
+                                type="radio"
+                                value="Si"
+                                name="familiares"
+                                [ngModel]="persona.familiares">
+                        <label class="form-check-label">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input  class="form-check-input"
+                                type="radio"
+                                value="No"
+                                name="familiares"
+                                [ngModel]="persona.familiares">
+                        <label class="form-check-label">No</label>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <label class="col-12 col-form-label">Estado Civil</label>
+                <div class="form-group">
+                    <div class="form-check form-check-inline" *ngFor="let status of maritalStatus">
+                        <input  class="form-check-input"
+                                type="radio"
+                                [value]="status.value"
+                                name="estado"
+                                [ngModel]="persona.estado">
+                        <label class="form-check-label">{{status.name}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <label class="col-12 col-form-label">Idiomas Adicionales</label>
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    <input  class="form-check-input"
+                            type="checkbox">
+                    <label class="form-check-label">Inglés</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input  class="form-check-input"
+                            type="checkbox">
+                    <label class="form-check-label">Francés</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input  class="form-check-input"
+                            type="checkbox">
+                    <label  class="form-check-label">Alemán</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <button class="btn btn-primary btn-block btn-lg" 
+                        type="submit">
+                        Registrar Personal
+                </button>
             </div>
         </div>
     </form>

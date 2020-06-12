@@ -3,6 +3,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from "ngx-spinner";
 //Importación archivo de rutas
 import { AppRoutingModule } from './app-routing.module';
 //Importación páginas de la aplicación
@@ -26,6 +28,8 @@ import { ReactiveComponent } from './pages/formularios/reactive/reactive.compone
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    NgxSpinnerModule,
     GeneralComponentsModule,
     NgbModule
   ],

@@ -1,14 +1,22 @@
+//Importaciones generales
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+//Importacion de operadores rxjs
+import { Observable } from 'rxjs';
+import { tap,catchError,map } from 'rxjs/operators';
+//Importacion de operadores para promesas
 import { resolve } from 'url';
 import { reject } from 'q';
+//Importacion interfaces
+import { Countries } from '../interfaces/countries.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneralServicesService {
+
+  //Definicion de endpoints
+  private endPointCountries: string = "https://restcountries.eu/rest/v2/lang/es";
 
   //Se contruyen objetos de consulta
   private imagenesSlider: any[] = [
@@ -52,5 +60,33 @@ export class GeneralServicesService {
   public getSlidesImages(): Array<any> {
     return this.imagenesSlider;
   }
-  
+
+   //Servicio para obtener el arreglo de paises utilizando operador map (filtrando resultados)
+   public getCountriesReactive(){
+    return this._http.get(this.endPointCountries).pipe(
+      map((countries: Countries[]) =>{
+        return countries.map ( country => {
+          return {
+            name: country.name,
+            code: country.alpha3Code
+          }
+        })
+      })
+      );
+  }
+
+  //Servicio para obtener el arreglo de paises utilizando observables
+  public getCountriesTemplate(): Observable<Countries>{
+    return this._http.get<Countries>(this.endPointCountries).pipe(
+      tap(
+        (response) => {
+          console.log('.......................................... En el response de la clase servicios'); 
+        },
+        (error) => {
+          console.log('........................................... En el Error de la clase servicios');
+        }
+        )
+      );
+  }
+
 }

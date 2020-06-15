@@ -17,46 +17,91 @@
         <div class="form-group row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="nombre">Nombre(s)</label>
+                    <label  class="col-form-label"
+                            [ngClass]="{'text-danger': nombre.invalid && nombre.touched 
+                                        || nombre.invalid && template.submitted}"
+                            for="nombre">Nombre(s)
+                    </label>
                     <input  type="text" 
-                            class="form-control" 
+                            class="form-control"
+                            [ngClass]="{'is-invalid': nombre.invalid && nombre.touched 
+                                        || nombre.invalid && template.submitted}"
                             id="nombre" 
                             name="nombre"
                             [ngModel]="persona.nombre"
                             placeholder="Escriba su nombre(s)"
+                            #nombre="ngModel"
                             required>
+                    <div *ngIf="nombre.invalid && nombre.touched || nombre.invalid && template.submitted" 
+                         class="invalid-feedback">
+                         Este campo es requerido.
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="paterno">Apellido Paterno</label>
+                    <label  class="col-form-label"
+                            [ngClass]="{'text-danger': paterno.invalid && paterno.touched 
+                                        || paterno.invalid && template.submitted}" 
+                            for="paterno">
+                            Apellido Paterno
+                    </label>
                     <input  type="text" 
-                            class="form-control" 
+                            class="form-control"
+                            [ngClass]="{'is-invalid': paterno.invalid && paterno.touched 
+                                        || paterno.invalid && template.submitted}" 
                             id="paterno"
                             name="paterno"
                             [ngModel]="persona.paterno" 
                             placeholder="Escriba su apellido paterno"
+                            #paterno="ngModel"
                             required>
+                    <div *ngIf="paterno.invalid && paterno.touched || paterno.invalid && template.submitted" 
+                         class="invalid-feedback">
+                         Este campo es requerido.
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="materno">Apellido Materno</label>
+                    <label  class="col-form-label"
+                            [ngClass]="{'text-danger': materno.invalid && materno.touched 
+                                        || materno.invalid && template.submitted}"  
+                            for="materno">
+                            Apellido Materno
+                    </label>
                     <input  type="text" 
-                            class="form-control" 
+                            class="form-control"
+                            [ngClass]="{'is-invalid': materno.invalid && materno.touched 
+                                        || materno.invalid && template.submitted}"  
                             id="materno" 
                             name="materno"
                             [ngModel]="persona.materno" 
                             placeholder="Escriba su apellido materno"
+                            #materno="ngModel"
                             required>
+                    <div *ngIf="materno.invalid && materno.touched || materno.invalid && template.submitted" 
+                         class="invalid-feedback">
+                         Este campo es requerido.
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="pais">País de Nacimiento</label>
+                    <label  class="col-form-label" 
+                            [ngClass]="{'text-danger': pais.invalid && pais.touched 
+                                        || pais.invalid && template.submitted}"  
+                            for="pais">
+                            País de Nacimiento
+                    </label>
                     <select class="form-control"
                             name="pais"
-                            [ngModel]="persona.pais">
+                            [ngClass]="{'is-invalid': pais.invalid && pais.touched 
+                                        || pais.invalid && template.submitted}"
+                            [ngModel]="persona.pais.id"
+                            #pais="ngModel"
+                            required
+                            (change)="getPais($event)">
                         <option value=null
                                 disabled>
                                 Seleccione una opción
@@ -66,24 +111,66 @@
                                 {{pais.name}}
                         </option>  
                     </select>
+                    <div *ngIf="pais.invalid && pais.touched || pais.invalid && template.submitted" 
+                         class="invalid-feedback">
+                         Este campo es requerido.
+                    </div>
                 </div> 
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="fecha">Fecha de Nacimiento</label>
+                    <label  class="col-form-label"
+                            [ngClass]="{'text-danger': fecha.invalid && fecha.touched 
+                                        || fecha.invalid && template.submitted}"
+                            for="fecha">
+                            Fecha de Nacimiento
+                    </label>
                     <input  type="text" 
                             class="form-control" 
-                            id="fecha" 
-                            placeholder="dd/mm/aaaa">
+                            id="fecha"
+                            name="fecha"
+                            [ngClass]="{'is-invalid': fecha.invalid && fecha.touched 
+                                        || fecha.invalid && template.submitted}"
+                            [ngModel]="persona.fecha"
+                            #fecha="ngModel"
+                            [textMask]="{mask: dateMask}"
+                            placeholder="dd/mm/aaaa"
+                            required>
+                    <div    *ngIf="fecha.invalid && fecha.touched || fecha.invalid && template.submitted" 
+                            class="invalid-feedback">
+                            Este campo es requerido.
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="curp">CURP</label>
+                    <label  class="col-form-label"
+                            [ngClass]="{'text-danger': curp.invalid && curp.touched   
+                                        || curp.invalid && template.submitted}"
+                            for="curp">
+                            CURP
+                    </label>
                     <input  type="text" 
                             class="form-control" 
-                            id="curp" 
-                            placeholder="Escriba su CURP">
+                            id="curp"
+                            name="curp"
+                            [ngClass]="{'is-invalid': curp.invalid && curp.touched 
+                                        || curp.invalid && template.submitted}"
+                            [ngModel]="persona.curp"
+                            #curp="ngModel"
+                            placeholder="Escriba su CURP"
+                            maxlength="18"
+                            pattern="[A-Z][A,E,I,O,U,X][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][M,H][A-Z]{2}[B,C,D,F,G,H,J,K,L,M,N,Ñ,P,Q,R,S,T,V,W,X,Y,Z]{3}[0-9,A-Z][0-9]"
+                            required
+                            appUppercase>
+                    <div    *ngIf="curp.errors?.required && curp.touched || curp.errors?.required && template.submitted" 
+                            class="invalid-feedback">
+                            Este campo es requerido.
+                    </div>
+                    <div    *ngIf="curp.touched && curp.errors?.pattern"
+                            class="invalid-feedback">
+                            Ingrese un formato de curp válido.
+                    </div> 
                 </div>
             </div>
             <div class="col-md-6">
@@ -117,9 +204,15 @@
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
                     <input  type="text" 
-                            class="form-control" 
+                            class="form-control"
+                            [class.is-invalid]="email.invalid && email.touched"  
                             id="email" 
-                            placeholder="Escriba su correo electrónico">
+                            name="email"
+                            [ngModel]="persona.email"
+                            placeholder="Escriba su correo electrónico"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                            #email="ngModel"
+                            required>
                 </div>
             </div>
             <div class="col-md-3">
@@ -174,9 +267,8 @@
                     </div>
                 </div>
             </div>
-        </div>
         <div class="col-md-6 text-center">
-            <label class="col-12 col-form-label">Idiomas Adicionales</label>
+            <label class="col-12 col-form-label">Idiomas Adicionales (Opcional)</label>
             <div class="form-group">
                 <div class="form-check form-check-inline">
                     <input  class="form-check-input"
@@ -193,8 +285,58 @@
                             type="checkbox">
                     <label  class="form-check-label">Alemán</label>
                 </div>
+                <div class="form-check form-check-inline">
+                    <input  class="form-check-input"
+                            type="checkbox">
+                    <label  class="form-check-label">Japonés</label>
+                </div>
             </div>
         </div>
+        <div class="col-md-6 text-center">
+            <label class="col-12 col-form-label">Enfermedades (Opcional)</label>
+                <div class="form-group">
+                    <div class="form-check form-check-inline" *ngFor="let disease of diseases">
+                        <input  class="form-check-input"
+                                type="checkbox">
+                        <label class="form-check-label">{{disease.name}}</label>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <label class="col-12 col-form-label">¿Practica algún deporte? (Opcional)</label>
+                <div class="form-group">
+                    <div class="form-check form-check-inline">
+                        <input  class="form-check-input"
+                                type="radio"
+                                value="Si"
+                                name="deportes"
+                                (click)="showSportsInput('Si')"
+                                [(ngModel)]="persona.deportes">
+                        <label class="form-check-label">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input  class="form-check-input"
+                                type="radio"
+                                value="No"
+                                name="deportes"
+                                (click)="showSportsInput('No')"
+                                [(ngModel)]="persona.deportes">
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-6">
+        <fieldset [disabled]="showInput == false">
+            <div class="form-group">
+                <label class="text-center" for="direccion">Especifique</label>
+                <input  type="text" 
+                        class="form-control" 
+                        id="direccion" 
+                        placeholder="Especifique el(los) deportes que practica">
+            </div>
+        </fieldset>
+        </div>
+    </div>
         <div class="col-md-4">
             <div class="form-group">
                 <button class="btn btn-primary btn-block btn-lg" 
@@ -204,5 +346,80 @@
             </div>
         </div>
     </form>
+  <!-- Estructura del formulario -->
+  <br>
+  <!-- Estructura de la tabla de registros -->
+    <div>   
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h4>Personal Registrado</h4>
+                <hr class="red">
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th rowspan="2" class="text-center">Id del empleado</th>
+                    <th rowspan="2" class="text-center">Nombre</th>
+                    <th rowspan="2" class="text-center">Apellido Paterno</th>
+                    <th rowspan="2" class="text-center">Apellido Materno</th>
+                    <th rowspan="2" class="text-center">País de Nacimiento</th>
+                    <th rowspan="2" class="text-center">Fecha de Nacimiento</th>
+                    <th rowspan="2" class="text-center">CURP</th>
+                    <th rowspan="2" class="text-center">RFC</th>
+                    <th rowspan="2" class="text-center">Domicilio</th>
+                    <th rowspan="2" class="text-center">C.P.</th>
+                    <th rowspan="2" class="text-center">Correo Electrónico</th>
+                    <th rowspan="2" class="text-center">Teléfono Móvil</th>
+                    <th rowspan="2" class="text-center">Teléfono Casa</th>
+                    <th rowspan="2" class="text-center">Familiares Aquí</th>
+                    <th rowspan="2" class="text-center">Estado Civil</th>
+                    <th rowspan="2" class="text-center">Idiomas</th>
+                    <th rowspan="2" class="text-center">Enfermedades</th>
+                    <th rowspan="2" class="text-center">Practica Deporte</th>
+                    <th rowspan="2" class="text-center">Especifique deporte</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#334444</td>
+                        <td>Andrés</td>
+                        <td>Chávez</td>
+                        <td>Sosa</td>
+                        <td>México</td>
+                        <td>14/04/1994</td>
+                        <td>CASA0D08UF0U9F</td>
+                        <td>CASA940414M48</td>
+                        <td>Estado de Nuevo León #308</td>
+                        <td>07550</td>
+                        <td>androx_cerebralmurderer@hotmail.com</td>
+                        <td>5565444554456</td>
+                        <td>57109240</td>
+                        <td class="text-center">Si</td>
+                        <td>Divorciado</td>
+                        <td class="text-center">
+                            <ul>  
+                                <li>Inglés
+                                <li>Japonés 
+                                <li>Francés
+                            </ul>
+                        </td>
+                        <td class="text-center">
+                            <ul>  
+                                <li>Diabetes
+                                <li>Cancer 
+                                <li>Respiratorio
+                            </ul>
+                        </td>
+                        <td class="text-center">Si</td>
+                        <td class="text-center">Fútbol Soccer</td>
+                    </tr>
+                </tbody>
+        </table>
+        </div>
+    <!-- Estructura de la tabla de registros -->
+    <br>
+    </div> 
 </div>
 

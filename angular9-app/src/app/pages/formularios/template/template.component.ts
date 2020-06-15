@@ -21,13 +21,25 @@ export class TemplateComponent implements OnInit {
     nombre: null,
     paterno: null,
     materno: null,
-    pais: null,
+    pais: {
+      id: null,
+      name: null
+    },
+    fecha: null,
+    curp: null,
+    rfc: null,
+    email: null,
     familiares: null,
-    estado: null
+    estado: null,
+    deportes: null
   };
 
   public paises: Countries;
   public maritalStatus: any[] = [];
+  public diseases: any[] = [];
+  public showInput: boolean = false;
+  //Variable para definir la máscara del input
+  public dateMask = [/\d/, /\d/,'/',/\d/, /\d/,'/',/\d/,/\d/,/\d/,/\d/];
 
   constructor(private generalService: GeneralServicesService,
               private spinner: NgxSpinnerService) { }
@@ -57,12 +69,37 @@ export class TemplateComponent implements OnInit {
   //Método para obtener imágenes del Slider principal
   private getMaritalStatus():void{
     this.maritalStatus = this.generalService.getMaritalStatus();
-    console.log(this.maritalStatus);
+    this.getDiseases();
     this.spinner.hide();
   }
   
+  //Método paara obtener listado de enfermedades
+  private getDiseases():void{
+    this.diseases = this.generalService.getDiseases();
+  }
+
+  //Método para obtener pais seleccionado
+  public getPais( event: any):void{
+
+  }
+
+  //Método para mostrar campo de deporte
+  public showSportsInput(value:string):void{
+    if(value == 'Si'){
+      this.showInput = true;
+    }else{
+      this.showInput = false;
+    }
+  }
+
   //Método para almacenar información
   public saveData( form: NgForm ):void{
-    console.log( form.value );
+    if(form.valid){
+      console.log( form.value );
+    }else{
+      return
+    }
   }
+
+
 }

@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { TextMaskModule } from 'angular2-text-mask';
 //Importación archivo de rutas
 import { AppRoutingModule } from './app-routing.module';
 //Importación páginas de la aplicación
@@ -15,13 +16,17 @@ import { GeneralComponentsModule } from './general-components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TemplateComponent } from './pages/formularios/template/template.component';
 import { ReactiveComponent } from './pages/formularios/reactive/reactive.component';
+import { OnlyLettersDirective } from './directives/only-letters.directive';
+import { UppercaseDirective } from './directives/uppercase.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TemplateComponent,
-    ReactiveComponent
+    ReactiveComponent,
+    OnlyLettersDirective,
+    UppercaseDirective
   ],
   imports: [
     BrowserModule,
@@ -30,6 +35,7 @@ import { ReactiveComponent } from './pages/formularios/reactive/reactive.compone
     HttpClientModule,
     FormsModule,
     NgxSpinnerModule,
+    TextMaskModule,
     GeneralComponentsModule,
     NgbModule
   ],

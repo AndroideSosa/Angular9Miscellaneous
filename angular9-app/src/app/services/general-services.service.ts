@@ -52,7 +52,7 @@ export class GeneralServicesService {
     }
   ]
 
-  //Se contruyen objetos de consulta
+  //Se contruyen objetos de consulta para estado civil
   private estadosCivil: any[] = [
     {
       id: 1,
@@ -80,6 +80,34 @@ export class GeneralServicesService {
     }
   ]
 
+  //Se contruyen objetos de consulta para estado civil
+  private enfermedades: any[] = [
+    {
+      id: 1,
+      name: "Diabetes",
+      value: "Diab",
+      description: "Enfermedades del grupo de la diabetes"
+    },
+    {
+      id: 2,
+      name: "Respiratorias",
+      value: "Resp",
+      description: "Enfermedades respiratorias"
+    },
+    {
+      id: 3,
+      name: "Cáncer",
+      value: "Can",
+      description: "Enfermedades del grupo de cáncer"
+    },
+    {
+      id: 4,
+      name: "Ninguna",
+      value: "Null",
+      description: "Enfermedades del grupo de cáncer"
+    }
+  ]
+
   constructor(private _http: HttpClient) { 
   }
 
@@ -88,11 +116,15 @@ export class GeneralServicesService {
     return this.imagenesSlider;
   }
 
-  //Servicio que regresa el arreglo de imagenes para el slide
+  //Servicio que regresa el arreglo de estado civiles
   public getMaritalStatus(): Array<any> {
     return this.estadosCivil;
   }
 
+  //Servicio que regresa el arreglo de enfermedades
+  public getDiseases(): Array<any> {
+    return this.enfermedades;
+  }
 
    //Servicio para obtener el arreglo de paises utilizando operador map (filtrando resultados)
    public getCountriesReactive(){

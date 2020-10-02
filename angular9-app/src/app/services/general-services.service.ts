@@ -141,8 +141,8 @@ export class GeneralServicesService {
   }
 
   //Servicio para obtener el arreglo de paises utilizando observables
-  public getCountriesTemplate(): Observable<Countries>{
-    return this._http.get<Countries>(this.endPointCountries).pipe(
+  public getCountriesTemplate(): Observable<Countries[]>{
+    return this._http.get<Countries[]>(this.endPointCountries).pipe(
       tap(
         (response) => {
           console.log('.......................................... En el response de la clase servicios'); 

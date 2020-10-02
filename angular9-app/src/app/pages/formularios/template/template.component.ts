@@ -34,7 +34,7 @@ export class TemplateComponent implements OnInit {
     deportes: null
   };
 
-  public paises: Countries;
+  public paises: Countries[]=[];
   public maritalStatus: any[] = [];
   public diseases: any[] = [];
   public showInput: boolean = false;

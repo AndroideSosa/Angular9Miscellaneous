@@ -1,0 +1,87 @@
+<div class="container top-buffer bottom-buffer">
+    <!-- Título de la sección--> 
+      <div class="col-md-12">
+          <h4>Clases e Interfaces</h4>
+          <hr class="red">
+      </div>
+  <br>
+    <!-- Estructura del formulario -->
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+              <div class="col-md-12">
+                  <h4>Registro de Usuario</h4>
+              </div>
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label for="nombre">Nombre(s)</label>
+                      <input  formControlName="nombre"
+                              type="text" 
+                              class="form-control" 
+                              id="nombre" 
+                              name="nombre"
+                              placeholder="Escriba su nombre(s)">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label for="apellidoP">Apellido Paterno</label>
+                      <input  formControlName="paterno"
+                              type="text" 
+                              class="form-control" 
+                              id="apellidoP" 
+                              placeholder="Escriba su apellido paterno">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label for="apellidoP">Apellido Materno</label>
+                      <input  formControlName="materno"  
+                              type="text" 
+                              class="form-control" 
+                              id="apellidoM" 
+                              placeholder="Escriba su apellido materno">
+                  </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>Estado:</label>
+                    <select class="form-control"
+                            formControlName="pais">
+                    <option value="null"
+                            disabled> 
+                            Seleccione una opción
+                    </option>
+                    <option *ngFor="let estado of paises"
+                            [value]="estado.id"> 
+                            {{estado.name}}
+                    </option>
+            </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="fecha">Fecha de Nacimiento</label>
+                      <input  formControlName="nacimiento"  
+                              type="text" 
+                              class="form-control" 
+                              id="fecha" 
+                              placeholder="dd/mm/aaaa">
+                  </div>
+              </div>
+              <hr class="red">
+              <div class="col-md-4 col-md-offset-9">
+                  <div class="form-group">
+                      <button class="btn btn-primary btn-block btn-lg" 
+                              type="submit">
+                              Registrar Personal
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </form>
+</div>
+  
+  

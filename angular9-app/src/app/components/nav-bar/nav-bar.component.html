@@ -16,7 +16,7 @@
         <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">Listas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">Examples</a>
+        <a class="nav-link" [routerLink]="'/images-grid'" (click)="isMenuCollapsed = true">Examples</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">About</a>
@@ -40,6 +40,12 @@
                 </div>
             </div>
           </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/lazy-load'" (click)="isMenuCollapsed = true">Lazy Load</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/class-interface'" (click)="isMenuCollapsed = true">Clases/Interfaces</a>
       </li>
     </ul>
   </div>
